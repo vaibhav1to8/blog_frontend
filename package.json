@@ -1,0 +1,24 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "sass": "^1.101.0",
+    "vite": "^8.1.1"
+  },
+  "dependencies": {
+    "@apollo/client": "^4.2.6",
+    "bootstrap": "^5.3.8",
+    "graphql": "^16.14.2",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.1"
+  }
+}

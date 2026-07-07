@@ -1,0 +1,51 @@
+// Global UI scale — matches 80% browser zoom at 100% zoom
+$ui-scale: 0.8;
+
+@function ui($value) {
+  @return $value * $ui-scale;
+}
+
+// Colors
+$bg: #ffffff;
+$text: #181a2a;
+$muted: #97989f;
+$border: #e8e8ea;
+$primary: #4b6bfb;
+$primary-dark: #3f5de0;
+$footer-bg: #f4f4f5;
+$card-shadow: 0 ui(8px) ui(24px) rgba(24, 26, 42, 0.06);
+
+// Typography
+$font-family-base: "Inter", "Segoe UI", Arial, sans-serif;
+$post-card-title-size: ui(21px);
+
+// Layout (Figma specs × 0.8)
+$container-max-width: ui(1216px);
+$hero-height: ui(500px);
+$post-card-width: ui(392px);
+$post-card-min-height: ui(488px);
+$post-card-padding: ui(16px);
+$post-card-gap: ui(16px);
+$post-card-content-padding: ui(8px);
+$post-card-content-gap: ui(20px);
+$post-grid-gap: ui(20px);
+$post-card-image-height: ui(240px);
+$hero-overlay-width: ui(600px);
+$hero-overlay-padding: ui(30px);
+$hero-overlay-gap: ui(8px);
+$hero-overlay-drop: 32%;
+$hero-overlay-overhang: ui(88px);
+$featured-title-size: ui(25px);
+$header-height: ui(80px);
+$header-search-width: ui(320px);
+$header-control-height: ui(44px);
+$create-main-bg: #eef3ff;
+$create-sidebar-bg: #ffffff;
+$create-input-bg: #f3f4f6;
+$create-input-border: #e8e8ea;
+$radius-md: ui(12px);
+$radius-sm: ui(8px);
+
+// Breakpoints (unchanged — viewport-based)
+$breakpoint-md: 992px;
+$breakpoint-sm: 768px;

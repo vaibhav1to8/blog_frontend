@@ -1,0 +1,25 @@
+@use "variables" as *;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == md {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  }
+}
+
+@mixin link-reset {
+  color: $text;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: $text;
+    text-decoration: none;
+  }
+}
