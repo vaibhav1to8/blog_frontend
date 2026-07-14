@@ -13,6 +13,7 @@ const postFields = `
   visibility
   status
   publishDate
+  viewCount
   createdAt
   updatedAt
 `;
@@ -73,5 +74,14 @@ export const UPDATE_POST = gql`
 export const DELETE_POST = gql`
   mutation DeletePost($id: ID!) {
     deletePost(id: $id)
+  }
+`;
+
+export const INCREMENT_POST_VIEW = gql`
+  mutation IncrementPostView($id: ID!) {
+    incrementPostView(id: $id) {
+      id
+      viewCount
+    }
   }
 `;

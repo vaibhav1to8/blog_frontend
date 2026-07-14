@@ -51,9 +51,11 @@ function Dashboard() {
         {postCountLoading && <div className="state-box">Loading post count...</div>}
         {postCountError && <div className="state-box state-error">Failed to load post count.</div>}
         {!postCountLoading && !postCountError && (
-          <span className="count-btn mb-3 text-end">
-            <span>{postCount} {postCount === 1 ? "post" : "posts"} found</span>
-          </span>
+          <div className="d-flex justify-content-end mb-3">
+            <span className="count-btn">
+              {postCount} {postCount === 1 ? "post" : "posts"}
+            </span>
+          </div>
         )}
 
         {!loading && !error && featuredPost && (
