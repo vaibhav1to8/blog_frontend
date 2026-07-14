@@ -1,24 +1,25 @@
-import { Link } from "react-router-dom";
 import { formatDate } from "../utils/formatDate";
 import { getPostAuthor, getPostCategory, getPostImage, getAuthorAvatar } from "../utils/postImages";
 
-function PostCard({ post }) {
+function PostCard({ post, onSelect }) {
   const category = getPostCategory(post);
   const author = getPostAuthor(post);
   const image = getPostImage(post);
 
+  const openPost = () => onSelect?.(post);
+
   return (
     <article className="post-card">
-      <Link to={`/post/${post.id}`} className="post-card-image-wrap">
+      <button type="button" className="post-card-image-wrap" onClick={openPost}>
         <img src={image} alt={post.title} className="post-card-image" />
-      </Link>
+      </button>
 
       <div className="post-card-content">
         <span className="post-category">{category}</span>
 
-        <Link to={`/post/${post.id}`} className="post-card-title">
+        <button type="button" className="post-card-title" onClick={openPost}>
           {post.title}
-        </Link>
+        </button>
 
         <div className="post-card-meta">
           <img src={getAuthorAvatar(author)} alt={author} className="author-avatar" />

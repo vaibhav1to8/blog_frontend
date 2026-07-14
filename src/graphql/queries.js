@@ -25,6 +25,11 @@ export const GET_POSTS = gql`
   }
 `;
 
+export const GET_POSTS_COUNT = gql`
+  query PostCount {
+    postCount
+  }
+`;
 export const SEARCH_POSTS = gql`
   query SearchPosts($query: String!) {
     searchPosts(query: $query) {

@@ -347,13 +347,18 @@ img {
 
 .post-card-image-wrap {
   display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
 }
 
 .post-card-image {
   width: 100%;
   height: $post-card-image-height;
   object-fit: cover;
-  border-radius: $radius-sm;
   background: #f4f4f5;
 }
 
@@ -368,6 +373,12 @@ img {
 .post-card-title {
   @include link-reset;
   display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
   font-size: $post-card-title-size;
   line-height: 1.35;
   font-weight: 600;
@@ -1107,6 +1118,31 @@ img {
   }
 }
 
+.detail-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.btn-edit-post {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: $radius-md;
+  background: var(--text);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  &:hover {
+    opacity: 0.9;
+    color: #fff;
+  }
+}
+
 .detail-hero-image,
 .detail-inline-image {
   width: 100%;
@@ -1232,6 +1268,22 @@ img {
   color: #4b4c57;
 }
 
+.count-btn{
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  background: var(--primary);
+  color: #fff;
+  border-radius: $radius-sm;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  white-space: nowrap;
+}
+
 .state-error {
   border-color: #f3c1c1;
   background: #fff5f5;
@@ -1242,6 +1294,46 @@ img {
   border-radius: $radius-sm;
   padding: 12px 14px;
   margin-bottom: 16px;
+}
+
+.post-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: ui(16px);
+}
+
+.post-modal {
+  background: #fff;
+  width: 80%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  border-radius: $radius-md;
+  padding: ui(24px);
+  box-shadow: var(--card-shadow);
+}
+
+.post-modal-close {
+  position: absolute;
+  right: ui(15px);
+  top: ui(15px);
+  border: none;
+  background: transparent;
+  font-size: ui(20px);
+  cursor: pointer;
+  color: var(--text);
+}
+
+.post-modal-image {
+  width: 100%;
+  border-radius: $radius-sm;
+  margin-bottom: ui(16px);
 }
 
 .alert-success {

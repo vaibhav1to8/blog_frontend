@@ -2,6 +2,7 @@ const getApiBase = () => (import.meta.env.VITE_API_URL || "http://localhost:4000
 
 export const MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024;
 export const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+const BACKEND_UPLOADS_PREFIX = "/images/uploads/";
 
 export const resolveMediaUrl = (value) => {
   if (!value) return "";
@@ -9,6 +10,9 @@ export const resolveMediaUrl = (value) => {
   if (/^https?:\/\//i.test(value)) return value;
 
   const normalizedPath = value.startsWith("/") ? value : `/${value}`;
+  if (normalizedPath.startsWith(BACKEND_UPLOADS_PREFIX)) {
+    return `${getApiBase()}${normalizedPath}`;
+  }
 
   if (typeof window !== "undefined") {
     return `${window.location.origin}${normalizedPath}`;

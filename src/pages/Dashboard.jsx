@@ -1,17 +1,18 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@apollo/client/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PostCard from "../components/PostCard";
-import { GET_POSTS, SEARCH_POSTS } from "../graphql/queries";
+import PostDetailsModal from "../components/PostDetailsModal";
+import { GET_POSTS, SEARCH_POSTS, GET_POSTS_COUNT } from "../graphql/queries";
 import { formatDate } from "../utils/formatDate";
 import { getPostAuthor, getPostCategory, getPostImage, getAuthorAvatar } from "../utils/postImages";
+import { useState } from "react";
 
 function Dashboard() {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("q")?.trim() || "";
   const isSearching = searchQuery.length > 0;
-
   const {
     data: postsData,
     loading: postsLoading,
@@ -19,6 +20,9 @@ function Dashboard() {
   } = useQuery(GET_POSTS, {
     skip: isSearching,
   });
+
+  const { data: postCountData, loading: postCountLoading, error: postCountError } = useQuery(GET_POSTS_COUNT);
+  const postCount = postCountData?.postCount ?? 0;
 
   const {
     data: searchData,
@@ -34,6 +38,7 @@ function Dashboard() {
   const posts = isSearching ? searchData?.searchPosts ?? [] : postsData?.posts ?? [];
   const featuredPost = isSearching ? null : posts[0];
   const latestPosts = isSearching ? posts : posts.slice(1);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   return (
     <div className="page">
@@ -42,6 +47,14 @@ function Dashboard() {
       <main className="container page-content">
         {loading && <div className="state-box">Loading posts...</div>}
         {error && <div className="state-box state-error">Failed to load posts.</div>}
+
+        {postCountLoading && <div className="state-box">Loading post count...</div>}
+        {postCountError && <div className="state-box state-error">Failed to load post count.</div>}
+        {!postCountLoading && !postCountError && (
+          <span className="count-btn mb-3 text-end">
+            <span>{postCount} {postCount === 1 ? "post" : "posts"} found</span>
+          </span>
+        )}
 
         {!loading && !error && featuredPost && (
           <section className="featured-section">
@@ -53,9 +66,9 @@ function Dashboard() {
               <div className="featured-overlay-card">
                 <span className="featured-badge">{getPostCategory(featuredPost)}</span>
 
-                <Link to={`/post/${featuredPost.id}`} className="featured-title">
+                <button style={{ border: "none", textAlign: "center" }} onClick={() => setSelectedPost(featuredPost)}>
                   {featuredPost.title}
-                </Link>
+                </button>
 
                 <div className="featured-meta">
                   <img
@@ -87,29 +100,19 @@ function Dashboard() {
 
           <div className="posts-grid">
             {latestPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
+              <PostCard key={post.id} post={post} onSelect={setSelectedPost} />
             ))}
           </div>
 
           {!isSearching && latestPosts.length > 0 && (
-            <div className="view-all-wrap">
-              {/* <button type="button" className="btn-view-all">
-                View All Post
-              </button> */}
-            </div>
+            <div className="view-all-wrap" />
           )}
         </section>
-
-        {/* <section className="ad-section" aria-label="Advertisement">
-          <div className="ad-placeholder">
-            <span className="ad-label">Advertisement</span>
-            <span className="ad-text">You can place ads</span>
-            <span className="ad-size">750x100</span>
-          </div>
-        </section> */}
       </main>
 
       <Footer />
+
+      <PostDetailsModal post={selectedPost} onClose={() => setSelectedPost(null)} />
     </div>
   );
 }

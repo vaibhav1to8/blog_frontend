@@ -1,18 +1,19 @@
 # Frontend - Blog Post Manager
+
 React frontend with Bootstrap and Apollo Client.
 
 ## Demo video
+
 A walkthrough of the app is included in the `video` folder:
+
 - `video/Blog - 7 July 2026.mp4`
 
-## Requirements
-   Node.js version v20.19.5 
-   npm version v11.13.0 
 ## Setup
 
 1. Copy `.env.example` to `.env` (optional).
 2. Install dependencies:
    npm install
+
 3. Start dev server:
    npm run dev
    
@@ -20,5 +21,7 @@ A walkthrough of the app is included in the `video` folder:
 Default app URL: `http://localhost:5173/`
 
 ##  Project Demo
+
 Watch the project walkthrough here:
+
 https://www.loom.com/share/767a8e1c98c74defba6e121fb51ce793

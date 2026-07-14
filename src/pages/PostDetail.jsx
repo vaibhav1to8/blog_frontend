@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client/react";
+import { useParams,useNavigate } from "react-router-dom";
+import { useQuery,useMutation } from "@apollo/client/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { GET_POST } from "../graphql/queries";
+import { DELETE_POST, GET_POST,GET_POSTS,GET_DRAFTS } from "../graphql/queries";
 import { formatDate } from "../utils/formatDate";
 import { getPostAuthor, getPostCategory, getPostImage, getAuthorAvatar } from "../utils/postImages";
 import { renderInlineMarkdown, renderPostContent } from "../utils/renderPostContent";
@@ -15,7 +15,8 @@ function PostDetail() {
   const category = getPostCategory(post);
   const author = getPostAuthor(post);
   const image = getPostImage(post);
-
+  const navigate=useNavigate()
+  
   return (
     <div className="page">
       <Header />

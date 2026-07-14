@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "@apollo/client/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import RichTextEditor from "../components/RichTextEditor";
-import { ADD_POST, GET_DRAFTS, GET_POST, GET_POSTS, UPDATE_POST } from "../graphql/queries";
+import { ADD_POST, GET_DRAFTS, GET_POST, GET_POSTS, GET_POSTS_COUNT, UPDATE_POST } from "../graphql/queries";
 import { getPlainTextFromHtml, normalizeEditorHtml } from "../utils/htmlContent";
 import { resolveMediaUrl, resolveUploadFallbackUrl, validateImageFile } from "../utils/mediaUrl";
 
@@ -51,7 +51,7 @@ function CreatePost() {
   });
 
   const [addPost] = useMutation(ADD_POST, {
-    refetchQueries: [{ query: GET_POSTS }, { query: GET_DRAFTS }],
+    refetchQueries: [{ query: GET_POSTS }, { query: GET_DRAFTS }, {query: GET_POSTS_COUNT}],
   });
 
   const [updatePost] = useMutation(UPDATE_POST, {
